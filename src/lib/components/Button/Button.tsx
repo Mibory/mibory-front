@@ -25,11 +25,13 @@ export function Button({
             className={cn("btn", {
                 'bg-dark-blue text-beige': variant === ButtonVariants.darkblue,
                 'bg-light-blue text-dark-blue': variant === ButtonVariants.lightblue,
-                'bg-orange text-dark-blue uppercase': variant === ButtonVariants.orange
+                'bg-orange text-dark-blue uppercase': variant === ButtonVariants.orange,
+                'text-[24px]': text.length < 30,
+                'text-[20px]': text.length >= 30 && text.length < 50,
             }, className)}
             onClick={onClick}
         >
-            {text}
+            {text.length < 50 ? text : text.substring(0, 50) + '...'}
         </button>
     </>
 }

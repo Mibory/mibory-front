@@ -2,6 +2,6 @@
 
 @layer components {
     .btn {
-        @apply w-70 h-16.5 text-[24px];
+        @apply w-70 h-16.5 leading-7 px-2;
     }
 }

@@ -2,7 +2,7 @@
 
 @layer components {
     .day-num-container {
-        @apply mt-10 ml-[55px] w-fit;
+        @apply mt-5 ml-[55px] w-fit;
     }
 
     .day-excercises-container {

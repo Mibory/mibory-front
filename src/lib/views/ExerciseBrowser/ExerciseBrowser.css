@@ -1,0 +1,19 @@
+@reference '@/index.css';
+
+@layer components {
+    .eb-title-container {
+        @apply fixed flex w-full justify-center h-[100px] pb-4 items-end bg-light-background shadow-light;
+
+        p {
+            @apply text-dark-blue text-[20px];
+        }
+    }
+
+    .eb-exercises-container {
+        @apply flex flex-col gap-3.5 pt-[120px] w-full items-center;
+    }
+
+    .eb-add-btn-container {
+        @apply fixed flex w-full justify-center bottom-0 h-25 bg-light-background pt-4 shadow-top-light;
+    }
+}

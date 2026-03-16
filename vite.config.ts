@@ -12,6 +12,12 @@ export default defineConfig({
     }
   },
   server: {
-    allowedHosts: ['crimpy-mariah-elsewhere.ngrok-free.dev']
+    allowedHosts: ['crimpy-mariah-elsewhere.ngrok-free.dev'],
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    }
   }
 })
