@@ -1,0 +1,32 @@
+@reference "@/index.css";
+
+@layer components {
+    .burger {
+        @apply flex flex-col gap-1.25 z-50;
+
+        div {
+            @apply w-7.5 h-1.25 transition-all duration-300 ease-in-out;
+            transform-origin: center;
+        }
+
+        div:nth-child(even) {
+            @apply bg-dark-blue z-50;
+        }
+
+        div:nth-child(odd) {
+            @apply bg-orange z-51;
+        }
+
+        &.open div:nth-child(1) {
+            transform: translate(9px, 4px) rotate(54deg) scaleX(calc(18/30));
+        }
+
+        &.open div:nth-child(2) {
+            transform: rotate(-36deg);
+        }
+
+        &.open div:nth-child(3) {
+            transform: translate(-9px, -4px) rotate(54deg) scaleX(calc(18/30));
+        }
+    }
+}

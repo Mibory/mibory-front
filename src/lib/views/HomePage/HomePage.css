@@ -1,0 +1,22 @@
+@reference '@/index.css';
+
+@layer components {
+    .header-container {
+        @apply mt-[170px] w-[300px] mx-auto;
+
+        h1 {
+            @apply text-[64px] font-bold text-dark-blue leading-none mx-auto;
+        }
+
+        p {
+            @apply text-[20px] text-orange leading-none text-right pr-2
+        }
+    }
+
+    .content-container {
+        @apply w-full flex flex-col gap-5 items-center mt-35;
+        p {
+            @apply text-dark-blue text-[20px];
+        }
+    }
+}

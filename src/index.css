@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Goldman";
+    src: url("./lib/assets/fonts/Goldman-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Goldman";
+    src: url("./lib/assets/fonts/Goldman-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@theme {
+    --color-dark-blue: #25343f;
+    --color-orange: #ff9b51;
+    --color-light-blue: #bfc9d1;
+    --color-beige: #eaefef;
+    --color-dark-beige: #d9d9d9;
+    --color-light-background: #ffffff;
+
+    --font-sans: "Goldman", sans-serif;
+
+    --shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+@layer base {
+    * {
+        /* @apply border-red-600 border; */
+    }
+
+    body {
+        @apply font-sans;
+    }
+}
+
+:root {
+    --dark-blue: #25343f;
+    --orange: #ff9b51;
+    --light-blue: #bfc9d1;
+    --beige: #eaefef;
+    --dark-beige: #d9d9d9;
+    --light-background: #ffffff;
+}

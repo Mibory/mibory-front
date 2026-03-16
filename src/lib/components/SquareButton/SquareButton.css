@@ -1,0 +1,7 @@
+@reference '@/index.css';
+
+@layer components {
+    .square-btn {
+        @apply w-[125px] h-[100px] text-[24px] uppercase font-bold text-dark-blue shadow;
+    }
+}

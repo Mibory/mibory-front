@@ -1,0 +1,15 @@
+@reference '@/index.css';
+
+@layer components {
+    .menu {
+        @apply bg-light-background w-screen h-screen fixed top-0 z-40 transition-transform;
+
+        &.closed {
+            @apply translate-x-full;
+        }
+
+        .buttons-container {
+            @apply w-full mt-40 flex flex-col items-center;
+        }
+    }
+}

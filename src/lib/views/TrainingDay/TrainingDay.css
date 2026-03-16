@@ -1,0 +1,15 @@
+@reference '@/index.css';
+
+@layer components {
+    .day-num-container {
+        @apply mt-10 ml-[55px] w-fit;
+    }
+
+    .day-excercises-container {
+        @apply w-full flex flex-col items-center gap-[14px] mt-7;
+    }
+
+    .action-btns-container {
+        @apply flex justify-center w-70 mx-auto gap-[29px] mt-6;
+    }
+}
