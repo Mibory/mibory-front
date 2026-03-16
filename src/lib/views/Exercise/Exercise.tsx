@@ -1,23 +1,27 @@
 import { Button, ButtonVariants } from '@/lib/components/Button/Button';
-import './Excercise.css';
+import './Exercise.css';
 import { useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import cn from 'classnames';
 
-export function Excercise(
+export function Exercise(
 ) {
     const [searchParams] = useSearchParams();
     const excerciseName = searchParams.get('name');
+    const excerciseUrl = searchParams.get('url');
     const [video, setVideo] = useState(false);
     return (
         <>
             <div className='excercise-name-container'>
-                <h1>{excerciseName}</h1>
+                <h1 className={cn({
+                    'text-[40px]': excerciseName!.length < 30,
+                    'text-[30px]': excerciseName!.length >= 30 && excerciseName!.length < 40,
+                })}>{excerciseName}</h1>
             </div>
             {video &&
                 <div className='absolute w-full flex justify-center mt-6 h-[210px]'>
                     <iframe
-                        src='https://www.youtube.com/embed/bfAd9ZnSc-g'
+                        src={excerciseUrl!}
                         allow='autoplay; encrypted-media'
                         allowFullScreen
                         title={excerciseName!}

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { HomePage } from "./lib/views/HomePage/HomePage";
 import { TrainingDay } from "./lib/views/TrainingDay/TrainingDay";
 import { Layout } from "./lib/layouts/Layout";
-import { Excercise } from "./lib/views/Excercise/Excercise";
+import { Exercise } from "./lib/views/Exercise/Exercise";
 import { ExerciseBrowser } from "./lib/views/ExerciseBrowser/ExerciseBrowser";
 
 
@@ -28,9 +28,9 @@ function App() {
             }
           />
           <Route
-            path="/excercise"
+            path="/exercise"
             element={
-              <Excercise />
+              <Exercise />
             }
           />
           <Route

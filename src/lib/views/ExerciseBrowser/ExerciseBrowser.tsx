@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './ExerciseBrowser.css';
 import { Button, ButtonVariants } from '@/lib/components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 type Exercise = {
     _id: string;
@@ -11,6 +12,7 @@ type Exercise = {
 export function ExerciseBrowser(
 ) {
     const [exercises, setExercises] = useState<Exercise[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchExercises = async () => {
@@ -45,7 +47,13 @@ export function ExerciseBrowser(
                 {exercises
                     .sort((a, b) => a.name.localeCompare(b.name))
                     .map((exercise, idx) => (
-                        <Button key={exercise._id} text={exercise.name} onClick={() => { }} className='capitalize' variant={idx % 2 ? ButtonVariants.lightblue : undefined} />
+                        <Button
+                            key={exercise._id}
+                            text={exercise.name}
+                            onClick={() => navigate(`/exercise?name=${encodeURIComponent(exercise.name)}&url=${encodeURIComponent(exercise.videoUrl)}`)}
+                            className='capitalize'
+                            variant={idx % 2 ? ButtonVariants.lightblue : undefined}
+                        />
                     ))}
                 <div className='h-[140px]'></div>
             </div>

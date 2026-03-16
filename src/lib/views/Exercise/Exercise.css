@@ -1,0 +1,13 @@
+@reference '@/index.css';
+
+@layer components {
+    .excercise-name-container {
+        @apply w-[335px] border flex justify-center mx-auto mt-30 py-4 px-4;
+        h1 {
+            @apply font-bold capitalize text-dark-blue;
+        }
+    }
+    .ex-action-btns-container {
+        @apply fixed w-full flex flex-col items-center gap-[16px] bottom-15;
+    }
+}
