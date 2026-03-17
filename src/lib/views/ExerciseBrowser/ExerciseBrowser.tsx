@@ -15,27 +15,22 @@ export function ExerciseBrowser(
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchExercises = async () => {
-            const cachedData = sessionStorage.getItem('cached_exercises');
-            if (cachedData) {
-                setExercises(JSON.parse(cachedData));
-                return;
-            }
-            try {
-                const res = await fetch('/api/exercises', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await res.json();
+        const cachedData = sessionStorage.getItem('cached_exercises');
+        if (cachedData) {
+            setExercises(JSON.parse(cachedData));
+            return;
+        }
+
+        fetch('/api/exercises', {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => res.json())
+            .then(data => {
                 setExercises(data);
                 sessionStorage.setItem('cached_exercises', JSON.stringify(data));
-            } catch (err) {
-                console.error('Fetch error: ', err);
-            }
-        };
-        fetchExercises();
+            })
+            .catch(err => console.error('Fetch error: ', err));
     }, []);
 
     return (
