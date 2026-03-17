@@ -2,7 +2,7 @@
 
 @layer components {
     .day-num-container {
-        @apply fixed w-full bg-light-background top-0 h-[100px] shadow flex items-end;
+        @apply fixed w-full bg-light-background top-0 h-[100px] shadow-light flex items-end;
 
         h1 {
             @apply ml-13 pb-3 text-[42px] text-dark-blue;
@@ -18,6 +18,6 @@
     }
 
     .action-btns-container {
-        @apply flex justify-center w-70 mx-auto gap-[29px] mt-6;
+        @apply flex justify-center w-full gap-[29px] h-25 fixed bottom-0 bg-light-background pt-4 shadow-top-light;
     }
 }

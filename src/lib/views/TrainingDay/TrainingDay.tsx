@@ -73,6 +73,7 @@ export function TrainingDay() {
                             />
                         ))
                 }
+                <div className='h-[140px]'></div>
             </div>
             <div className="action-btns-container">
                 <SquareButton text="other" onClick={() => navigate('/exercise-browser')} variant={ButtonVariants.orange} />
