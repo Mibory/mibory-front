@@ -5,11 +5,6 @@ import { Button, ButtonVariants } from "../../components/Button/Button";
 import { SquareButton } from "../../components/SquareButton/SquareButton";
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-const dayName = [
-    'dupcia', 'brzusio', 'góra'
-] as const;
-
-
 type TTrainingDay = {
     _id: string;
     dayNum: number;
@@ -23,6 +18,7 @@ type TTrainingDay = {
         name: string;
         videoUrl: string;
     }[];
+    dayName?: string;
 };
 
 export function TrainingDay() {
@@ -55,7 +51,12 @@ export function TrainingDay() {
     return (
         <>
             <div className="day-num-container">
-                <h1 className="text-[42px]">Day <span className="font-bold text-[36px] text-orange">{dayName[dayNum - 1]}</span></h1>
+                <h1 className="text-[42px]">
+                    Day
+                    <span className="font-bold text-[36px] text-orange">
+                        {' ' + (trainingDays.find(td => td.dayNum === dayNum)?.dayName ?? dayNum)}
+                    </span>
+                </h1>
             </div>
             <div className="day-excercises-container">
                 {
