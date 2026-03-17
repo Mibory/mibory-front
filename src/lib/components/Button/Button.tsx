@@ -4,14 +4,15 @@ import cn from "classnames";
 export const ButtonVariants = {
     orange: "orange",
     darkblue: "darkblue",
-    lightblue: "lightblue"
+    lightblue: "lightblue",
+    done: "done"
 } as const;
 
 export type ButtonVariant = keyof typeof ButtonVariants;
 
 export function Button({
     text,
-    variant = "darkblue",
+    variant = ButtonVariants.darkblue,
     className,
     onClick
 }: {
@@ -26,6 +27,7 @@ export function Button({
                 'bg-dark-blue text-beige': variant === ButtonVariants.darkblue,
                 'bg-light-blue text-dark-blue': variant === ButtonVariants.lightblue,
                 'bg-orange text-dark-blue uppercase': variant === ButtonVariants.orange,
+                'bg-light-green text-green-on-light-green': variant === ButtonVariants.done,
                 'text-[24px]': text.length < 30,
                 'text-[20px]': text.length >= 30 && text.length < 50,
             }, className)}

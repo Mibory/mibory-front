@@ -69,7 +69,7 @@ export function TrainingDay() {
                                 text={ex.name}
                                 onClick={() => navigate(`/exercise?name=${encodeURIComponent(ex.name)}&url=${encodeURIComponent(ex.videoUrl)}`)}
                                 className='capitalize'
-                                variant={id % 2 ? ButtonVariants.lightblue : undefined}
+                                variant={id === 0 || id === 3 ? ButtonVariants.done : id % 2 ? ButtonVariants.lightblue : undefined}
                             />
                         ))
                 }
