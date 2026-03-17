@@ -48,7 +48,7 @@ export function ExerciseBrowser(
                         <Button
                             key={exercise._id}
                             text={exercise.name}
-                            onClick={() => navigate(`/exercise?name=${encodeURIComponent(exercise.name)}&url=${encodeURIComponent(exercise.videoUrl)}`)}
+                            onClick={() => navigate('/exercise', { state: { exercise } })}
                             className='capitalize'
                             variant={idx % 2 ? ButtonVariants.lightblue : undefined}
                         />
