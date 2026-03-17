@@ -2,11 +2,19 @@
 
 @layer components {
     .day-num-container {
-        @apply mt-5 ml-[55px] w-fit;
+        @apply fixed w-full bg-light-background top-0 h-[100px] shadow flex items-end;
+
+        h1 {
+            @apply ml-13 pb-3 text-[42px] text-dark-blue;
+
+            span {
+                @apply font-bold text-[36px] text-orange;
+            }
+        }
     }
 
     .day-excercises-container {
-        @apply w-full flex flex-col items-center gap-[14px] mt-7;
+        @apply w-full flex flex-col items-center gap-[14px] mt-[120px];
     }
 
     .action-btns-container {

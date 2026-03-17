@@ -30,7 +30,7 @@ export function TrainingDay() {
     const userName = searchParams.get('usr');
 
     useEffect(() => {
-        const cachedData = sessionStorage.getItem('cached_training_days');
+        const cachedData = sessionStorage.getItem(`cached_training_days_${userName}`);
         if (cachedData) {
             setTrainingDays(JSON.parse(cachedData));
             return;
@@ -43,7 +43,7 @@ export function TrainingDay() {
             .then(res => res.json())
             .then(data => {
                 setTrainingDays(data);
-                sessionStorage.setItem('cached_training_days', JSON.stringify(data));
+                sessionStorage.setItem(`cached_training_days_${userName}`, JSON.stringify(data));
             })
             .catch(err => console.error('Fetch error: ', err));
     }, []);
@@ -51,9 +51,9 @@ export function TrainingDay() {
     return (
         <>
             <div className="day-num-container">
-                <h1 className="text-[42px]">
+                <h1>
                     Day
-                    <span className="font-bold text-[36px] text-orange">
+                    <span>
                         {' ' + (trainingDays.find(td => td.dayNum === dayNum)?.dayName ?? dayNum)}
                     </span>
                 </h1>
