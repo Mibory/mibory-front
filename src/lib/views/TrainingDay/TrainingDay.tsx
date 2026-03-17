@@ -78,7 +78,7 @@ export function TrainingDay() {
             <div className="action-btns-container">
                 <SquareButton text="other" onClick={() => navigate('/exercise-browser')} variant={ButtonVariants.orange} />
                 <SquareButton text="skip" onClick={() => {
-                    setDayNum((dayNum % 3) + 1);
+                    setDayNum((dayNum % trainingDays.length) + 1);
                 }} />
             </div>
         </>
