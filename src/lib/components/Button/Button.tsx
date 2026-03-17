@@ -5,6 +5,7 @@ export const ButtonVariants = {
     orange: "orange",
     darkblue: "darkblue",
     lightblue: "lightblue",
+    gray: "gray",
     done: "done"
 } as const;
 
@@ -29,6 +30,7 @@ export function Button({
                 'bg-light-blue text-dark-blue': variant === ButtonVariants.lightblue,
                 'bg-orange text-dark-blue uppercase': variant === ButtonVariants.orange,
                 'bg-light-green text-green-on-light-green': variant === ButtonVariants.done,
+                'bg-gray text-dark-blue': variant === ButtonVariants.gray,
                 'text-[24px]': text.length < 30,
                 'text-[20px]': text.length >= 30 && text.length < 50,
             }, className)}

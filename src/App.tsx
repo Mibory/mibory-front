@@ -6,6 +6,7 @@ import { Exercise } from "./lib/views/Exercise/Exercise";
 import { ExerciseBrowser } from "./lib/views/ExerciseBrowser/ExerciseBrowser";
 import { useEffect } from "react";
 import { Training } from "./lib/views/Training/Training";
+import { AppProvider } from "./lib/context/AppContext";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -19,41 +20,43 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route element={<Layout />}>
-          <Route
-            path="/"
-            element={
-              <HomePage />
-            }
-          />
-          <Route
-            path="/training-day"
-            element={
-              <TrainingDay />
-            }
-          />
-          <Route
-            path="/exercise"
-            element={
-              <Exercise />
-            }
-          />
-          <Route
-            path="/exercise-browser"
-            element={
-              <ExerciseBrowser />
-            }
-          />
-          <Route
-            path="/training"
-            element={
-              <Training />
-            }
-          />
-        </Route>
-      </Routes>
+      <AppProvider>
+        <ScrollToTop />
+        <Routes>
+          <Route element={<Layout />}>
+            <Route
+              path="/"
+              element={
+                <HomePage />
+              }
+            />
+            <Route
+              path="/training-day"
+              element={
+                <TrainingDay />
+              }
+            />
+            <Route
+              path="/exercise"
+              element={
+                <Exercise />
+              }
+            />
+            <Route
+              path="/exercise-browser"
+              element={
+                <ExerciseBrowser />
+              }
+            />
+            <Route
+              path="/training"
+              element={
+                <Training />
+              }
+            />
+          </Route>
+        </Routes>
+      </AppProvider>
     </BrowserRouter>
   )
 }

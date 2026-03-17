@@ -18,6 +18,6 @@
     }
 
     .action-btns-container {
-        @apply flex justify-center w-full gap-[29px] h-25 fixed bottom-0 bg-light-background pt-4 shadow-top-light;
+        @apply flex justify-center w-full gap-[29px] h-35 fixed bottom-0 bg-light-background pt-4 shadow-top-light;
     }
 }

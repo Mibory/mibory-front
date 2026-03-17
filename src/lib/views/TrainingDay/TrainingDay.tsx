@@ -3,7 +3,7 @@ import './TrainingDay.css';
 import { useEffect, useState } from "react";
 import { Button, ButtonVariants } from "../../components/Button/Button";
 import { SquareButton } from "../../components/SquareButton/SquareButton";
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import type { TExercise } from '../Exercise/Exercise';
 
 type TTrainingDay = {
