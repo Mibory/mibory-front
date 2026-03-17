@@ -22,7 +22,8 @@ export function Button({
     onClick: () => void;
 }) {
     return <>
-        <button 
+        <button
+            type='button'
             className={cn("btn", {
                 'bg-dark-blue text-beige': variant === ButtonVariants.darkblue,
                 'bg-light-blue text-dark-blue': variant === ButtonVariants.lightblue,

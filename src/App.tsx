@@ -5,6 +5,7 @@ import { Layout } from "./lib/layouts/Layout";
 import { Exercise } from "./lib/views/Exercise/Exercise";
 import { ExerciseBrowser } from "./lib/views/ExerciseBrowser/ExerciseBrowser";
 import { useEffect } from "react";
+import { Training } from "./lib/views/Training/Training";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -19,10 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Routes
-        location={location}
-        key={location.pathname}
-      >
+      <Routes>
         <Route element={<Layout />}>
           <Route
             path="/"
@@ -46,6 +44,12 @@ function App() {
             path="/exercise-browser"
             element={
               <ExerciseBrowser />
+            }
+          />
+          <Route
+            path="/training"
+            element={
+              <Training />
             }
           />
         </Route>

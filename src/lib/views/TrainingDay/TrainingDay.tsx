@@ -3,7 +3,8 @@ import './TrainingDay.css';
 import { useEffect, useState } from "react";
 import { Button, ButtonVariants } from "../../components/Button/Button";
 import { SquareButton } from "../../components/SquareButton/SquareButton";
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import type { TExercise } from '../Exercise/Exercise';
 
 type TTrainingDay = {
     _id: string;
@@ -13,21 +14,17 @@ type TTrainingDay = {
         name: string;
         currentTrainingDay: number;
     };
-    exercises: {
-        _id: string;
-        name: string;
-        videoUrl: string;
-    }[];
+    exercises: TExercise[];
     dayName?: string;
 };
 
 export function TrainingDay() {
 
+    const location = useLocation();
+    const userName = location.state || '';
     const navigate = useNavigate();
     const [dayNum, setDayNum] = useState(1);
     const [trainingDays, setTrainingDays] = useState<TTrainingDay[]>([]);
-    const [searchParams] = useSearchParams();
-    const userName = searchParams.get('usr');
 
     useEffect(() => {
         const cachedData = sessionStorage.getItem(`cached_training_days_${userName}`);
@@ -63,15 +60,17 @@ export function TrainingDay() {
                     trainingDays
                         .find(td => td.dayNum === dayNum)
                         ?.exercises
-                        .map((ex, id) => (
-                            <Button
-                                key={ex._id}
-                                text={ex.name}
-                                onClick={() => navigate(`/exercise?name=${encodeURIComponent(ex.name)}&url=${encodeURIComponent(ex.videoUrl)}`)}
-                                className='capitalize'
-                                variant={id === 0 || id === 3 ? ButtonVariants.done : id % 2 ? ButtonVariants.lightblue : undefined}
-                            />
-                        ))
+                        .map((exercise, id) => {
+                            return (
+                                <Button
+                                    key={exercise._id}
+                                    text={exercise.name}
+                                    onClick={() => navigate('/exercise', { state: {exercise} })}
+                                    className='capitalize'
+                                    variant={id === 0 || id === 3 ? ButtonVariants.done : id % 2 ? ButtonVariants.lightblue : undefined}
+                                />
+                            )
+                        })
                 }
                 <div className='h-[140px]'></div>
             </div>

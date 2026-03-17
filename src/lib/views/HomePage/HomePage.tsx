@@ -13,8 +13,8 @@ export function HomePage() {
             </div>
             <div className="content-container">
                 <p>Choose your fighter</p>
-                <Button text="Debi" onClick={() => navigate('/training-day?usr=debi')} />
-                <Button text="Misiek" onClick={() => navigate('/training-day?usr=misiek')} />
+                <Button text="Debi" onClick={() => navigate('/training-day', {state: 'debi'})} />
+                <Button text="Misiek" onClick={() => navigate('/training-day', {state: 'misiek'})} />
             </div>
         </>
     )
