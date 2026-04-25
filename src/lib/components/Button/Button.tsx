@@ -15,16 +15,19 @@ export function Button({
     text,
     variant = ButtonVariants.darkblue,
     className,
-    onClick
+    onClick,
+    disabled = false,
 }: {
     text: string;
     variant?: ButtonVariant;
     className?: string;
     onClick: () => void;
+    disabled?: boolean;
 }) {
     return <>
         <button
             type='button'
+            disabled={disabled}
             className={cn("btn", {
                 'bg-dark-blue text-beige': variant === ButtonVariants.darkblue,
                 'bg-light-blue text-dark-blue': variant === ButtonVariants.lightblue,
@@ -34,7 +37,7 @@ export function Button({
                 'text-[24px]': text.length < 30,
                 'text-[20px]': text.length >= 30 && text.length < 50,
             }, className)}
-            onClick={onClick}
+            onClick={disabled ? undefined : onClick}
         >
             {text.length < 50 ? text : text.substring(0, 50) + '...'}
         </button>
