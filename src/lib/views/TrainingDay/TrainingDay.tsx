@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Button, ButtonVariants } from "../../components/Button/Button";
 import { SquareButton } from "../../components/SquareButton/SquareButton";
 import { useLocation, useNavigate } from 'react-router-dom';
-import type { TExercise } from '../Exercise/Exercise';
+import type { TTrainingDayExercise } from '../Exercise/Exercise';
 
 type TTrainingDay = {
     _id: string;
@@ -14,36 +14,44 @@ type TTrainingDay = {
         name: string;
         currentTrainingDay: number;
     };
-    exercises: TExercise[];
+    exercises: TTrainingDayExercise[];
     dayName?: string;
 };
 
 export function TrainingDay() {
 
     const location = useLocation();
-    const userName = location.state || '';
+    const state = location.state || {};
+    const userName = typeof state === 'string' ? state : state.userName || '';
+    const completedExerciseId: string | undefined = typeof state === 'object' ? state.completedExerciseId : undefined;
+
     const navigate = useNavigate();
     const [dayNum, setDayNum] = useState(1);
     const [trainingDays, setTrainingDays] = useState<TTrainingDay[]>([]);
+    const [doneExercises, setDoneExercises] = useState<Set<string>>(new Set());
 
     useEffect(() => {
-        const cachedData = sessionStorage.getItem(`cached_training_days_${userName}`);
-        if (cachedData) {
-            setTrainingDays(JSON.parse(cachedData));
-            return;
+        if (completedExerciseId) {
+            setDoneExercises(prev => new Set(prev).add(completedExerciseId));
         }
+    }, [completedExerciseId]);
 
+    useEffect(() => {
         fetch(`/api/training-days?usr=${userName}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return res.json();
+            })
             .then(data => {
                 setTrainingDays(data);
-                sessionStorage.setItem(`cached_training_days_${userName}`, JSON.stringify(data));
             })
             .catch(err => console.error('Fetch error: ', err));
-    }, []);
+    }, [userName]);
+
+    const currentDay = trainingDays.find(td => td.dayNum === dayNum);
 
     return (
         <>
@@ -51,26 +59,37 @@ export function TrainingDay() {
                 <h1>
                     Day
                     <span>
-                        {' ' + (trainingDays.find(td => td.dayNum === dayNum)?.dayName ?? dayNum)}
+                        {' ' + (currentDay?.dayName ?? dayNum)}
                     </span>
                 </h1>
             </div>
             <div className="day-excercises-container">
                 {
-                    trainingDays
-                        .find(td => td.dayNum === dayNum)
-                        ?.exercises
-                        .map((exercise, id) => {
-                            return (
-                                <Button
-                                    key={exercise._id}
-                                    text={exercise.name}
-                                    onClick={() => navigate('/exercise', { state: {exercise} })}
-                                    className='capitalize'
-                                    variant={id === 0 || id === 3 ? ButtonVariants.done : id % 2 ? ButtonVariants.lightblue : undefined}
-                                />
-                            )
-                        })
+                    currentDay?.exercises.map((entry, id) => {
+                        const isDone = doneExercises.has(entry.exercise._id);
+                        return (
+                            <Button
+                                key={entry.exercise._id}
+                                text={entry.exercise.name}
+                                disabled={isDone}
+                                onClick={() => navigate('/exercise', {
+                                    state: {
+                                        exercise: entry.exercise,
+                                        config: {
+                                            sets: entry.sets,
+                                            repsMin: entry.repsMin,
+                                            repsMax: entry.repsMax,
+                                            restSeconds: entry.restSeconds,
+                                        },
+                                        trainingDayId: currentDay._id,
+                                        userName,
+                                    },
+                                })}
+                                className='capitalize'
+                                variant={isDone ? ButtonVariants.done : id % 2 ? ButtonVariants.lightblue : undefined}
+                            />
+                        );
+                    })
                 }
                 <div className='h-[140px]'></div>
             </div>
